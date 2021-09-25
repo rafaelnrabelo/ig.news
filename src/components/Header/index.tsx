@@ -1,18 +1,26 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
 import { SignInButton } from "../SignInButton";
+import { ActiveLink } from "../ActiveLink";
+
 import styles from "./styles.module.scss";
 
 export function Header() {
+  const { asPath } = useRouter();
+
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <img src="/images/logo.svg" alt="ig.news" />
+        <Image src="/images/logo.svg" alt="ig.news" width={110} height={31} />
         <nav>
-          <a className={styles.active} href="">
-            Home
-          </a>
-          <a href="">Posts</a>
+          <ActiveLink activeClassName={styles.active} href="/">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink activeClassName={styles.active} href="/posts">
+            <a>Posts</a>
+          </ActiveLink>
         </nav>
         <SignInButton />
       </div>
